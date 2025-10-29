@@ -89,7 +89,7 @@ public class Grande_Collection {
 	}
 	
 	
-	@AfterTest(enabled=false)
+	@AfterTest
 	public void TearDown() {
 		
 		driver.quit();

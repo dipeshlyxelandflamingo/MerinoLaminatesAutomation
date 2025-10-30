@@ -70,7 +70,7 @@ public class Grande_Collection {
 		driver.findElement(By.xpath("//input[@name='age_confirm']")).click();
 		
 		Thread.sleep(5000);
-		//driver.findElement(By.xpath("//input[@value='Submit']")).click();
+		driver.findElement(By.xpath("//input[@value='Submit']")).click();
 
 		Thread.sleep(3000); // wait for response
 

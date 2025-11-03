@@ -35,9 +35,11 @@ public class Grande_Collection {
 	}
 
 	@Test
-	public void TC_01_PageTitle() {
+	public void TC_01_Verify_GrandeCollectionPageTitle() {
 
 		// Verify page title
+		
+		System.out.println(driver.getTitle());
 		String expectedTitle = "Grande Collection by Merino Laminates – 10ft Designer Laminates";
 		String actualTitle = driver.getTitle();
 		Assert.assertEquals(actualTitle, expectedTitle, "Page title mismatch!");
@@ -45,7 +47,7 @@ public class Grande_Collection {
 	}
 
 	@Test
-	public void TC_02_FormValidation() throws InterruptedException {
+	public void TC_02_FormSubmittion() throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0,5300)");
 

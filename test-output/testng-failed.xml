@@ -5,9 +5,9 @@
     <classes>
       <class name="com.Merino.Grande_Collection">
         <methods>
+          <include name="TC_02_FormSubmittion"/>
           <include name="TearDown"/>
           <include name="OpenBrowser"/>
-          <include name="TC_02_FormValidation"/>
         </methods>
       </class> <!-- com.Merino.Grande_Collection -->
     </classes>

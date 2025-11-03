@@ -37,12 +37,17 @@ public class Grande_Collection {
 	@Test
 	public void TC_01_Verify_GrandeCollectionPageTitle() {
 
-		// Verify page title
-		
-		System.out.println(driver.getTitle());
-		String expectedTitle = "Grande Collection by Merino Laminates – 10ft Designer Laminates";
-		String actualTitle = driver.getTitle();
-		Assert.assertEquals(actualTitle, expectedTitle, "Page title mismatch!");
+		 // Print actual title
+	    System.out.println(driver.getTitle());
+
+	    String expectedTitle = "Grande Collection by Merino Laminates – 10ft Designer Laminates";
+	    String actualTitle = driver.getTitle();
+
+	    // Normalize all dash types to standard hyphen to avoid encoding mismatch
+	    expectedTitle = expectedTitle.replaceAll("[–—−]", "-").trim();
+	    actualTitle = actualTitle.replaceAll("[–—−]", "-").trim();
+
+	    Assert.assertEquals(actualTitle, expectedTitle, "Page title mismatch!");
 
 	}
 
@@ -93,8 +98,9 @@ public class Grande_Collection {
 	
 	@AfterTest
 	public void TearDown() {
-		
-		driver.quit();
+		if (driver != null) {
+	        driver.quit();
+	    }
 		
 	}
 	

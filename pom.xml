@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
-	<groupId>MerinoLaminates</groupId>
-	<artifactId>MerinoLaminates</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+    <groupId>MerinoLaminates</groupId>
+    <artifactId>MerinoLaminates</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
     <!-- ✅ Encoding & Compiler setup -->
     <properties>
@@ -18,17 +18,17 @@
 
     <dependencies>
 
-        <!-- ✅ Selenium Java -->
+        <!-- ✅ Selenium Java (main dependency) -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.29.0</version>
         </dependency>
 
-        <!-- ✅ Add DevTools for Chrome 142 -->
+        <!-- ✅ DevTools (for Chrome ≥133, used by Chrome 142) -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-devtools-v142</artifactId>
+            <artifactId>selenium-devtools-v133</artifactId>
             <version>4.29.0</version>
         </dependency>
 
@@ -40,28 +40,27 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ✅ WebDriverManager -->
+        <!-- ✅ WebDriverManager (auto-manages ChromeDriver) -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.5.3</version>
         </dependency>
 
-        <!-- ✅ Apache POI -->
+        <!-- ✅ Apache POI (Excel reading/writing) -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>5.4.0</version>
         </dependency>
 
-        <!-- ✅ Apache POI OOXML -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.4.0</version>
         </dependency>
 
-        <!-- ✅ Logging -->
+        <!-- ✅ Logging (simple SLF4J backend) -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>

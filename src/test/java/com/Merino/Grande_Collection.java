@@ -25,13 +25,19 @@ public class Grande_Collection {
     WebDriverWait wait;
 
     @BeforeTest
-    public void OpenBrowser() {
+    public void OpenBrowser() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
 
-        // ✅ Works for both Jenkins (headless) and local (visible)
-        // Detect if running in headless Linux (like Jenkins)
+        // ✅ Use realistic browser fingerprint to bypass Cloudflare
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments("start-maximized");
+        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+                "AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/142.0.7444.134 Safari/537.36");
+
+        // ✅ Headless + Jenkins safe setup
         if (System.getProperty("os.name").toLowerCase().contains("linux")) {
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
@@ -39,15 +45,23 @@ public class Grande_Collection {
             options.addArguments("--disable-gpu");
         }
 
-        options.addArguments("--remote-allow-origins=*");
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         options.setExperimentalOption("useAutomationExtension", false);
+        options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         driver.get("https://www.merinolaminates.com/en/product-category/grande-collection");
+
+        // 🩵 Cloudflare detection and retry
+        String title = driver.getTitle();
+        if (title.contains("Attention Required") || title.contains("Cloudflare")) {
+            System.out.println("⚠ Cloudflare challenge detected. Retrying after 5 seconds...");
+            Thread.sleep(5000);
+            driver.navigate().refresh();
+        }
 
         // Close notification if visible
         try {
@@ -83,23 +97,15 @@ public class Grande_Collection {
 
         // Fill the form safely
         driver.findElement(By.name("Name")).sendKeys("Dipesh");
-        Thread.sleep(1000);
         driver.findElement(By.name("email")).sendKeys("dipesh123@yopmail.com");
-        Thread.sleep(1000);
         driver.findElement(By.name("mobile")).sendKeys("6354899390");
-        Thread.sleep(1000);
 
         new Select(driver.findElement(By.name("Country"))).selectByVisibleText("India");
-        Thread.sleep(1000);
         new Select(driver.findElement(By.id("stateDropDown"))).selectByVisibleText("Gujarat");
-        Thread.sleep(1000);
         new Select(driver.findElement(By.name("city"))).selectByVisibleText("Valsad");
-        Thread.sleep(1000);
         new Select(driver.findElement(By.name("you_are"))).selectByVisibleText("OEMs");
-        Thread.sleep(1000);
 
         driver.findElement(By.name("age_confirm")).click();
-        Thread.sleep(1000);
 
         // Wait for submit button and click
         WebElement submitBtn = wait.until(

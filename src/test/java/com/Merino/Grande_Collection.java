@@ -104,7 +104,7 @@ public class Grande_Collection {
         Thread.sleep(2000);      
         new Select(driver.findElement(By.id("stateDropDown"))).selectByVisibleText("Gujarat");
         Thread.sleep(2000); 
-        new Select(driver.findElement(By.xpath("//select[@name='city']"))).selectByVisibleText("Valsad");
+        new Select(driver.findElement(By.xpath("//select[@name='city']"))).selectByIndex(1);
         Thread.sleep(4000); 
         new Select(driver.findElement(By.name("you_are"))).selectByVisibleText("OEMs");
         Thread.sleep(3000); 

@@ -101,12 +101,16 @@ public class Grande_Collection {
         driver.findElement(By.name("mobile")).sendKeys("6354899390");
 
         new Select(driver.findElement(By.name("Country"))).selectByVisibleText("India");
+        Thread.sleep(2000);      
         new Select(driver.findElement(By.id("stateDropDown"))).selectByVisibleText("Gujarat");
+        Thread.sleep(2000); 
         new Select(driver.findElement(By.xpath("//select[@name='city']"))).selectByVisibleText("Valsad");
+        Thread.sleep(4000); 
         new Select(driver.findElement(By.name("you_are"))).selectByVisibleText("OEMs");
+        Thread.sleep(3000); 
 
         driver.findElement(By.name("age_confirm")).click();
-
+        Thread.sleep(3000); 
         // Wait for submit button and click
         WebElement submitBtn = wait.until(
                 ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Submit']")));

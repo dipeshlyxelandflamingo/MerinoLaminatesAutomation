@@ -21,7 +21,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Grande_Collection {
 
-    WebDriver driver;
+	WebDriver driver;
     WebDriverWait wait;
 
     @BeforeTest
@@ -102,7 +102,7 @@ public class Grande_Collection {
 
         new Select(driver.findElement(By.name("Country"))).selectByVisibleText("India");
         new Select(driver.findElement(By.id("stateDropDown"))).selectByVisibleText("Gujarat");
-        new Select(driver.findElement(By.name("city"))).selectByVisibleText("Valsad");
+        new Select(driver.findElement(By.xpath("//select[@name='city']"))).selectByVisibleText("Valsad");
         new Select(driver.findElement(By.name("you_are"))).selectByVisibleText("OEMs");
 
         driver.findElement(By.name("age_confirm")).click();

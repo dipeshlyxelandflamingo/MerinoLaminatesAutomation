@@ -7,7 +7,7 @@
         <methods>
           <include name="TearDown"/>
           <include name="OpenBrowser"/>
-          <include name="TC_02_FormValidation"/>
+          <include name="TC_02_FormSubmission"/>
         </methods>
       </class> <!-- com.Merino.Grande_Collection -->
     </classes>

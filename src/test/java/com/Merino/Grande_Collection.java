@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,97 +22,122 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class Grande_Collection {
 
 	WebDriver driver;
-	WebDriverWait wait;
+    WebDriverWait wait;
 
-	@BeforeTest
-	public void OpenBrowser() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    @BeforeTest
+    public void OpenBrowser() throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
 
-		driver.get("https://www.merinolaminates.com/en/product-category/grande-collection");
+        ChromeOptions options = new ChromeOptions();
 
-		// Close notification if visible
-		try {
-			WebElement cancel = wait.until(ExpectedConditions.elementToBeClickable(By.id("onesignal-slidedown-cancel-button")));
-			cancel.click();
-		} catch (Exception e) {
-			System.out.println("Notification popup not displayed.");
-		}
-	}
+        // ✅ Use realistic browser fingerprint to bypass Cloudflare
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments("start-maximized");
+        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+                "AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/142.0.7444.134 Safari/537.36");
 
-	@Test(priority = 1)
-	public void TC_01_Verify_GrandeCollectionPageTitle() {
-		String expectedTitle = "Grande Collection by Merino Laminates – 10ft Designer Laminates";
-		String actualTitle = driver.getTitle();
+        // ✅ Headless + Jenkins safe setup
+        if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-gpu");
+        }
 
-		// Normalize dashes
-		expectedTitle = expectedTitle.replaceAll("[–—−]", "-").trim();
-		actualTitle = actualTitle.replaceAll("[–—−]", "-").trim();
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+        options.setExperimentalOption("useAutomationExtension", false);
+        options.addArguments("--remote-allow-origins=*");
 
-		System.out.println("Actual Title: " + actualTitle);
-		Assert.assertEquals(actualTitle, expectedTitle, "❌ Page title mismatch!");
-		System.out.println("✅ Page title verified successfully.");
-	}
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
-	@Test(priority = 2)
-	public void TC_02_FormSubmission() throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+        driver.get("https://www.merinolaminates.com/en/product-category/grande-collection");
 
-		// Scroll to form
-		js.executeScript("window.scrollBy(0,5300)");
-		Thread.sleep(4000);
+        // 🩵 Cloudflare detection and retry
+        String title = driver.getTitle();
+        if (title.contains("Attention Required") || title.contains("Cloudflare")) {
+            System.out.println("⚠ Cloudflare challenge detected. Retrying after 5 seconds...");
+            Thread.sleep(5000);
+            driver.navigate().refresh();
+        }
 
-		// Fill the form safely
-		driver.findElement(By.name("Name")).sendKeys("Dipesh");
-		Thread.sleep(1000);
-		driver.findElement(By.name("email")).sendKeys("dipesh123@yopmail.com");
-		Thread.sleep(1000);
-		driver.findElement(By.name("mobile")).sendKeys("6354899390");
-		Thread.sleep(1000);
+        // Close notification if visible
+        try {
+            WebElement cancel = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.id("onesignal-slidedown-cancel-button")));
+            cancel.click();
+        } catch (Exception e) {
+            System.out.println("Notification popup not displayed.");
+        }
+    }
 
-		new Select(driver.findElement(By.name("Country"))).selectByVisibleText("India");
-		Thread.sleep(1000);
-		new Select(driver.findElement(By.id("stateDropDown"))).selectByVisibleText("Gujarat");
-		Thread.sleep(1000);
-		new Select(driver.findElement(By.name("city"))).selectByVisibleText("Valsad");
-		Thread.sleep(1000);
-		new Select(driver.findElement(By.name("you_are"))).selectByVisibleText("OEMs");
-		Thread.sleep(1000);
+    @Test(priority = 1)
+    public void TC_01_Verify_GrandeCollectionPageTitle() {
+        String expectedTitle = "Grande Collection by Merino Laminates – 10ft Designer Laminates";
+        String actualTitle = driver.getTitle();
 
-		driver.findElement(By.name("age_confirm")).click();
-		Thread.sleep(1000);
+        // Normalize dashes
+        expectedTitle = expectedTitle.replaceAll("[–—−]", "-").trim();
+        actualTitle = actualTitle.replaceAll("[–—−]", "-").trim();
 
-		// Wait for submit button and click
-		WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Submit']")));
-		js.executeScript("arguments[0].scrollIntoView(true);", submitBtn);
-		js.executeScript("arguments[0].click();", submitBtn);
+        System.out.println("Actual Title: " + actualTitle);
+        Assert.assertEquals(actualTitle, expectedTitle, "❌ Page title mismatch!");
+        System.out.println("✅ Page title verified successfully.");
+    }
 
-		// Wait for message response
-		Thread.sleep(4000);
+    @Test(priority = 2)
+    public void TC_02_FormSubmission() throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		try {
-			WebElement successMsg = driver.findElement(By.xpath("//div[contains(text(),'Thank you for your message')]"));
-			Assert.assertTrue(successMsg.isDisplayed(), "Success message not visible!");
-			System.out.println("✅ Form submitted successfully — Thank You message displayed.");
-		} catch (NoSuchElementException e) {
-			try {
-				WebElement errorMsg = driver.findElement(By.xpath("//div[contains(text(),'There was an error trying to send your message')]"));
-				String msg = errorMsg.getText();
-				Assert.fail("❌ Form submission failed! Error message: " + msg);
-			} catch (Exception ex) {
-				Assert.fail("❌ Form submission failed! No confirmation message found.");
-			}
-		}
-	}
+        // Scroll to form
+        js.executeScript("window.scrollBy(0,5300)");
+        Thread.sleep(4000);
 
-	@AfterTest
-	public void TearDown() {
-		if (driver != null) {
-			driver.quit();
-			System.out.println("🔒 Browser closed successfully.");
-		}
-	}
+        // Fill the form safely
+        driver.findElement(By.name("Name")).sendKeys("Dipesh");
+        driver.findElement(By.name("email")).sendKeys("dipesh123@yopmail.com");
+        driver.findElement(By.name("mobile")).sendKeys("6354899390");
+
+        new Select(driver.findElement(By.name("Country"))).selectByVisibleText("India");
+        new Select(driver.findElement(By.id("stateDropDown"))).selectByVisibleText("Gujarat");
+        new Select(driver.findElement(By.name("city"))).selectByVisibleText("Valsad");
+        new Select(driver.findElement(By.name("you_are"))).selectByVisibleText("OEMs");
+
+        driver.findElement(By.name("age_confirm")).click();
+
+        // Wait for submit button and click
+        WebElement submitBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Submit']")));
+        js.executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+        js.executeScript("arguments[0].click();", submitBtn);
+
+        // Wait for message response
+        Thread.sleep(4000);
+
+        try {
+            WebElement successMsg = driver
+                    .findElement(By.xpath("//div[contains(text(),'Thank you for your message')]"));
+            Assert.assertTrue(successMsg.isDisplayed(), "Success message not visible!");
+            System.out.println("✅ Form submitted successfully — Thank You message displayed.");
+        } catch (NoSuchElementException e) {
+            try {
+                WebElement errorMsg = driver.findElement(
+                        By.xpath("//div[contains(text(),'There was an error trying to send your message')]"));
+                String msg = errorMsg.getText();
+                Assert.fail("❌ Form submission failed! Error message: " + msg);
+            } catch (Exception ex) {
+                Assert.fail("❌ Form submission failed! No confirmation message found.");
+            }
+        }
+    }
+
+    @AfterTest
+    public void TearDown() {
+        if (driver != null) {
+            driver.quit();
+            System.out.println("🔒 Browser closed successfully.");
+        }
+    }
 }

@@ -2,38 +2,38 @@
 <testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-11T14:53:48 IST" name="Default suite" finished-at="2025-11-11T14:54:16 IST" duration-ms="28076">
+  <suite started-at="2025-11-11T14:57:35 IST" name="Default suite" finished-at="2025-11-11T14:58:03 IST" duration-ms="27474">
     <groups>
     </groups>
-    <test started-at="2025-11-11T14:53:48 IST" name="Default test" finished-at="2025-11-11T14:54:16 IST" duration-ms="28076">
+    <test started-at="2025-11-11T14:57:35 IST" name="Default test" finished-at="2025-11-11T14:58:03 IST" duration-ms="27474">
       <class name="com.Merino.Grande_Collection">
-        <test-method is-config="true" signature="OpenBrowser()[pri:0, instance:com.Merino.Grande_Collection@20140db9]" started-at="2025-11-11T14:53:48 IST" name="OpenBrowser" finished-at="2025-11-11T14:53:57 IST" duration-ms="8656" status="PASS">
+        <test-method is-config="true" signature="OpenBrowser()[pri:0, instance:com.Merino.Grande_Collection@20140db9]" started-at="2025-11-11T14:57:35 IST" name="OpenBrowser" finished-at="2025-11-11T14:57:43 IST" duration-ms="8055" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- OpenBrowser -->
-        <test-method signature="TC_01_Verify_GrandeCollectionPageTitle()[pri:1, instance:com.Merino.Grande_Collection@20140db9]" started-at="2025-11-11T14:53:57 IST" name="TC_01_Verify_GrandeCollectionPageTitle" finished-at="2025-11-11T14:53:57 IST" duration-ms="108" status="PASS">
+        <test-method signature="TC_01_Verify_GrandeCollectionPageTitle()[pri:1, instance:com.Merino.Grande_Collection@20140db9]" started-at="2025-11-11T14:57:43 IST" name="TC_01_Verify_GrandeCollectionPageTitle" finished-at="2025-11-11T14:57:43 IST" duration-ms="25" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC_01_Verify_GrandeCollectionPageTitle -->
-        <test-method signature="TC_02_FormSubmission()[pri:2, instance:com.Merino.Grande_Collection@20140db9]" started-at="2025-11-11T14:53:57 IST" name="TC_02_FormSubmission" finished-at="2025-11-11T14:54:16 IST" duration-ms="19088" status="FAIL">
+        <test-method signature="TC_02_FormSubmission()[pri:2, instance:com.Merino.Grande_Collection@20140db9]" started-at="2025-11-11T14:57:43 IST" name="TC_02_FormSubmission" finished-at="2025-11-11T14:58:03 IST" duration-ms="19299" status="FAIL">
           <exception class="org.openqa.selenium.remote.UnreachableBrowserException">
             <message>
               <![CDATA[Error communicating with the remote browser. It may have died.
 Build info: version: '4.29.0', revision: '5fc1ec94cb'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.7'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [4774b41c3535ba5a776eece7566c2db8, findElement [value, using]]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.60, chrome: {chromedriverVersion: 142.0.7444.61 (9884f628acbc..., userDataDir: C:\Users\LYXELA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57870}, goog:processID: 5960, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57870/devtoo..., se:cdpVersion: 142.0.7444.60, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4774b41c3535ba5a776eece7566c2db8]]>
+Command: [d0a51e8a0de4bf224aa824741010af79, findElement [value, using]]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.60, chrome: {chromedriverVersion: 142.0.7444.61 (9884f628acbc..., userDataDir: C:\Users\LYXELA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53134}, goog:processID: 11584, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53134/devtoo..., se:cdpVersion: 142.0.7444.60, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d0a51e8a0de4bf224aa824741010af79]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.openqa.selenium.remote.UnreachableBrowserException: Error communicating with the remote browser. It may have died.
 Build info: version: '4.29.0', revision: '5fc1ec94cb'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.7'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [4774b41c3535ba5a776eece7566c2db8, findElement [value, using]]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.60, chrome: {chromedriverVersion: 142.0.7444.61 (9884f628acbc..., userDataDir: C:\Users\LYXELA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57870}, goog:processID: 5960, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57870/devtoo..., se:cdpVersion: 142.0.7444.60, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 4774b41c3535ba5a776eece7566c2db8
+Command: [d0a51e8a0de4bf224aa824741010af79, findElement [value, using]]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.60, chrome: {chromedriverVersion: 142.0.7444.61 (9884f628acbc..., userDataDir: C:\Users\LYXELA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53134}, goog:processID: 11584, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53134/devtoo..., se:cdpVersion: 142.0.7444.60, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d0a51e8a0de4bf224aa824741010af79
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:572)
 at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
 at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
@@ -114,7 +114,7 @@ at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpCl
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC_02_FormSubmission -->
-        <test-method is-config="true" signature="TearDown()[pri:0, instance:com.Merino.Grande_Collection@20140db9]" started-at="2025-11-11T14:54:16 IST" name="TearDown" finished-at="2025-11-11T14:54:16 IST" duration-ms="19" status="PASS">
+        <test-method is-config="true" signature="TearDown()[pri:0, instance:com.Merino.Grande_Collection@20140db9]" started-at="2025-11-11T14:58:03 IST" name="TearDown" finished-at="2025-11-11T14:58:03 IST" duration-ms="20" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TearDown -->

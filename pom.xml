@@ -17,19 +17,19 @@
 
     <dependencies>
 
-        <!-- ✅ Selenium Java (main dependency) -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.29.0</version>
-        </dependency>
+    <!-- Selenium Core -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.29.0</version>
+    </dependency>
 
-        <!-- ✅ DevTools (for Chrome ≥133, used by Chrome 142) -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-devtools-v141</artifactId>
-            <version>4.29.0</version>
-        </dependency>
+    <!-- DevTools (auto-matching) -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-devtools</artifactId>
+        <version>4.29.0</version>
+    </dependency>
 
         <!-- ✅ TestNG -->
         <dependency>

@@ -27,7 +27,7 @@
         <!-- ✅ DevTools (for Chrome ≥133, used by Chrome 142) -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-devtools-v133</artifactId>
+            <artifactId>selenium-devtools-v142</artifactId>
             <version>4.29.0</version>
         </dependency>
 
